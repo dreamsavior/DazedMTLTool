@@ -150,7 +150,10 @@ def translateJSON(data, pbar):
     i = 0
     batchStartIndex = 0
 
+    print('Translating...')
+
     while i < len(data):
+        print('data[i]: ', data[i])
         item = data[i]
         # Speaker
         if 'name' in item:
@@ -172,7 +175,7 @@ def translateJSON(data, pbar):
                 if text in item:
                     if item[text] != None:
                         jaString = item[text]
-
+                        print("jaString: ", jaString)
                         # Remove any textwrap
                         if FIXTEXTWRAP == True:
                             finalJAString = jaString.replace('\n', ' ')
@@ -449,6 +452,7 @@ def translateText(characters, system, user, history):
     
     # Content to TL
     msg.append({"role": "user", "content": f'{user}'})
+    print("Sending message:", msg)
     response = openai.chat.completions.create(
         temperature=0.1,
         frequency_penalty=0.1,
@@ -456,6 +460,7 @@ def translateText(characters, system, user, history):
         model=MODEL,
         messages=msg,
     )
+    print("Response: ", response)
     return response
 
 def cleanTranslatedText(translatedText, varResponse):
