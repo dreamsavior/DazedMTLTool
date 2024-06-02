@@ -1,4 +1,5 @@
 .env
+prompt.txt
 *.json
 *.js
 *.yaml
@@ -10,3 +11,6 @@
 *.ks
 *.cid
 __pycache__
+files/*
+translated/*
+!version.json
